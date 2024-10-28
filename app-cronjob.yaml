@@ -5,7 +5,6 @@ metadata:
   labels: app-test
 spec:
   schedule: "0 0 1 1 *"
-  revisionHistoryLimit: 3
   concurrencyPolicy: Allow
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
