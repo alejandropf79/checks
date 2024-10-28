@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:  app-volume1
+data:
+  lastlog: |
+    Hello Fuckin' World!!
+
+  lastlog-2: |
+    Hello Fuckin' World 2!!
+
+  test-script.sh: |
+    #!/bin/bash
+    echo "test script" > /tmp/test-script
+    sleep 300
+

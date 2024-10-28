@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-test
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: app-test
+  template:
+    metadata:
+      labels:
+        app: app-test
+    spec:
+      containers:
+        #- image: public.ecr.aws/docker/library/httpd:latest
+      - image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
+        name: app-volume1
+        command: ["/bin/sh", "-c" ]
+        args: ["/bin/sh", "-c", "cp /tmp/config/* /var/log/ && sh /tmp/test-script.sh"]
+        - name: config-volume
+          mountPath: "/tmp/config/lastlog"
+          subPath: lastlog
+        - name: config-volume
+          mountPath: "/tmp/config/lastlog-2"
+          subPath: lastlog-2
+        - name: config-volume
+          mountPath: "/tmp/test-script.sh"
+          subPath: test-script.sh
+      volumes:
+      - name: config-volume
+        configMap:
+          name: app-cm
