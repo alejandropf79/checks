@@ -7,7 +7,7 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: app-testing
+      app: app-test
   template:
     metadata:
       labels:
