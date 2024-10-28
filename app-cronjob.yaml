@@ -19,7 +19,7 @@ spec:
           containers:
             - name: app-test-cron
               image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
-              command: ["/bin/sh", "-c", "cp /tmp/config/lastlog /var/log/ && sh /tmp/test-script.sh" ]
+              command: ["/bin/sh", "-c", "sh cp /tmp/config/lastlog /var/log/ && sh /tmp/test-script.sh" ]
               volumeMounts:
                 - name: config-volume
                   mountPath: "/tmp/config/lastlog"
