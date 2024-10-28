@@ -4,7 +4,7 @@ metadata:
   name: app-test-cronjob
   labels: app-test
 spec:
-  schedule: 0 0 1 1 *
+  schedule: "0 0 1 1 *"
   revisionHistoryLimit: 3
   concurrencyPolicy: Allow
   successfulJobsHistoryLimit: 3
@@ -15,7 +15,6 @@ spec:
       - name: config-volume
         configMap:
           name: app-volume1
-      restartPolicy: OnFailure
       containers:
       - name: app-test-cron
         image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
@@ -31,7 +30,4 @@ spec:
         - name: config-volume
           mountPath: "/tmp/test-script.sh"
           subPath: test-script.sh
-      volumes:
-      - name: config-volume
-        configMap:
-          name: app-volume1
+      restartPolicy: OnFailure
