@@ -1,17 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: CronJob
 metadata:
   name: app-test
+  labels: app-test
 spec:
-  replicas: 1
+  schedule: 0 0 1 1 *
   revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: app-test
-  template:
-    metadata:
-      labels:
-        app: app-test
+  concurrencyPolicy: Allow
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
     spec:
       containers:
       - image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
