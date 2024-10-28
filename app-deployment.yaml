@@ -18,6 +18,7 @@ spec:
         name: app-testing
         command: ["/bin/sh", "-c" ]
         args: ["/bin/sh", "-c", "cp /tmp/config/* /var/log/ && sh /tmp/test-script.sh"]
+        volumeMounts:
         - name: config-volume
           mountPath: "/tmp/config/lastlog"
           subPath: lastlog
