@@ -13,5 +13,7 @@ data:
   test-script.sh: |
     #!/bin/bash
     echo "test script" > /tmp/test-script
-    sleep 30
+    cp /tmp/config/lastlog /var/log/
+    cp /tmp/config/lastlog-2
+    sleep 300
 
