@@ -1,22 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-test
+  name: app-testing
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: app-test
+      app: app-testing
   template:
     metadata:
       labels:
-        app: app-test
+        app: app-testing
     spec:
       containers:
-        #- image: public.ecr.aws/docker/library/httpd:latest
       - image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
-        name: app-volume1
+        name: app-testing
         command: ["/bin/sh", "-c" ]
         args: ["/bin/sh", "-c", "cp /tmp/config/* /var/log/ && sh /tmp/test-script.sh"]
         - name: config-volume
@@ -31,4 +30,4 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: app-cm
+          name: app-volume1
