@@ -11,6 +11,11 @@ spec:
   failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: app-volume1
+      restartPolicy: OnFailure
       containers:
       - image: public.ecr.aws/ubuntu/ubuntu:24.04_stable
         name: app-test-cron
